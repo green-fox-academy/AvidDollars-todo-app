@@ -30,61 +30,85 @@ public class Cases {
         return FileIO.appendToFile(toAdd, Config.FILE.path);
     };
 
+    // returns -1 invalid input
+    private static int validateInput(String[] args) {
+        long linesCount = FileIO.countLines(Config.FILE.path);
+
+        if (linesCount == 0) {
+            print("file is empty");
+            return -1;
+        }
+
+        if (!validInteger(args)) {
+            print("Unable to check: index is not a number");
+            return -1;
+        }
+
+        int todoToHandleIndex = Integer.parseInt(args[1]) - 1;
+
+        if (todoToHandleIndex < 0 || todoToHandleIndex >= linesCount) {
+            print("Unable to reach: index is out of bounds");
+            return -1;
+        }
+
+        return todoToHandleIndex;
+    }
+
     public static void checkTodo(String[] args) {
-        modifyTodoFile(args, Modification.CHECKING);
+        int todoToHandleIndex = validateInput(args);
+
+        // provided input was not valid
+        if (todoToHandleIndex == -1) {
+            return;
+        }
+
+        List<String> lines = ClearFileAndReturnOldContent();
+
+        for (int i = 0; i < lines.size(); i++) {
+            if (i == todoToHandleIndex) {
+                String todo = lines.get(i);
+                String[] todoParts = todo.split(",", 2);
+
+                // "1," ... 1 = true (task is completed)
+                String checkedTodo = "1," + todoParts[1];
+                lines.set(i, checkedTodo);
+            }
+
+            FileIO.appendToFile(lines.get(i), Config.FILE.path);
+        }
     }
 
     public static void removeTodo(String[] args) {
+        int todoToHandleIndex = validateInput(args);
 
-        modifyTodoFile(args, Modification.REMOVING);
+        // provided input was not valid
+        if (todoToHandleIndex == -1) {
+            return;
+        }
 
-        /*// not very optimal way
-        List<String> lines = FileIO.readAllLines(Config.FILE.path);
-        FileIO.deleteFile(Config.FILE.path);
-        InitProcedure.start();
-
-        // TODO: handle case when arg cannot be parsed to an int
-        // TODO: clean string of possible empty spaces
-
-        int toRemoveIdx = Integer.parseInt(args[1]) - 1;
+        List<String> lines = ClearFileAndReturnOldContent();
 
         for (int i = 0; i < lines.size(); i++) {
-            if (i != toRemoveIdx) {
+            if (i != todoToHandleIndex) {
                 FileIO.appendToFile(lines.get(i), Config.FILE.path);
             }
-        }*/
+        }
     }
 
-    // TODO: to be refactored
-    private static void modifyTodoFile(String[] args, Modification option) {
-        // not very optimal way
+    private static List<String> ClearFileAndReturnOldContent() {
         List<String> lines = FileIO.readAllLines(Config.FILE.path);
         FileIO.deleteFile(Config.FILE.path);
         InitProcedure.start();
+        return lines;
+    }
 
-        // TODO: handle case when arg cannot be parsed to an int
-        // TODO: clean string of possible empty spaces
-
-        int todoToHandle = Integer.parseInt(args[1]) - 1;
-
-        for (int i = 0; i < lines.size(); i++) {
-            if (option == Modification.REMOVING) {
-                if (i != todoToHandle) {
-                    FileIO.appendToFile(lines.get(i), Config.FILE.path);
-                }
-            }
-
-            if (option == Modification.CHECKING) {
-                if (i == todoToHandle) {
-                    String todo = lines.get(i);
-                    String[] todoParts = todo.split(",", 2);
-                    String checktedTodo = "1," + todoParts[1];
-                    lines.set(i, checktedTodo);
-
-                }
-
-                FileIO.appendToFile(lines.get(i), Config.FILE.path);
-            }
+    private static boolean validInteger(String[] args) {
+        try {
+            Integer.parseInt(args[1]);
+            return true;
+        } catch (NumberFormatException e) {
+            print("Unable to remove: index is not a number");
+            return false;
         }
     }
 
