@@ -90,21 +90,17 @@ public class Cases {
             return;
         }
 
-        showList();
-    }
-
-    private static void showList() {
         List<String> tasks = FileIO.readAllLines(Config.FILE.path);
 
         int index = 1;
 
         for (String task: tasks) {
-            formatForPrint(task, index);
+            formatForPrintTodo(task, index);
             index++;
         }
     }
 
-    private static void formatForPrint(String task, int index) {
+    private static void formatForPrintTodo(String task, int index) {
         // limit: 2 → just one split will be done
         String[] strParts = task.split(",", 2);
         String ifDone = (strParts[0].equals("1")) ? "[x]" : "[ ]";
