@@ -17,7 +17,11 @@ public class HandleArgs {
                 }
 
                 case "-a", "--add" -> {
-                    // TODO: error handling if just -a and nothing else
+                    if (args.length == 1) {
+                        print("Unable to remove: no index provided");
+                        return;
+                    }
+
                     Cases.addTodo(args);
                 }
 
