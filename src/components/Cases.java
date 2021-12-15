@@ -7,9 +7,26 @@ import static common.OutToConsole.print;
 import java.util.List;
 
 public class Cases {
-
     public static boolean addTodo(String[] args) {
-        String toAdd = String.format("0,%s", args[1]);
+        String toAdd = "";
+
+        if (args.length == 2) {
+            // "0,%s"... 0 = false (task is not completed)
+            toAdd = String.format("0,%s", args[1]);
+        }
+
+        // handling multiple inputs for -a (--add)
+        if (args.length > 2) {
+            StringBuilder toAddStringBuilder = new StringBuilder();
+            for (int i = 1; i < args.length; i++) {
+                toAddStringBuilder.append(args[i]);
+                toAddStringBuilder.append(" ");
+            }
+            // "0, "... 0 = false (task is not completed)
+            toAdd = "0," + toAddStringBuilder;
+
+        }
+
         return FileIO.appendToFile(toAdd, Config.FILE.path);
     };
 
