@@ -15,7 +15,7 @@ public class App {
 
         // end of dummy data
 
-        HandleArgs.process(args);
+        Args.handle(args);
 
     }
 

@@ -4,8 +4,8 @@ import java.util.Map;
 
 import static common.OutToConsole.print;
 
-public class HandleArgs {
-    public static void process(String[] args) {
+public class Args {
+    public static void handle(String[] args) {
         if (args.length == 0) {
             printUsage();
         }
