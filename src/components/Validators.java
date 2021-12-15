@@ -1,7 +1,6 @@
 package components;
 
 import common.FileIO;
-import enums.Config;
 
 import static common.OutToConsole.print;
 

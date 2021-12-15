@@ -1,4 +1,4 @@
-package enums;
+package components;
 
 // contains names for files and folders for the app
 public enum Config {

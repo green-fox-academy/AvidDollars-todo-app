@@ -1,8 +1,6 @@
+import common.FileIO;
 import components.*;
-
-import static common.OutToConsole.*;
-
-import java.util.*;
+import components.Config;
 
 public class App {
     private static boolean hasTodoFolderAndFile = false;
@@ -11,9 +9,9 @@ public class App {
         createFileAndFolderIfNeeded();
 
         // ↓↓↓ dummy data for simulating CLI input, to be removed
-        args = new String[]{
-                "-l"
-        };
+        /*args = new String[]{
+                "-r", "2"
+        };*/
 
         // end of dummy data
 
@@ -24,9 +22,14 @@ public class App {
     // 1st run of the app → creation of folder and file for the app
     private static void createFileAndFolderIfNeeded() {
         if (!hasTodoFolderAndFile) {
-            InitProcedure.start();
+            createFolderAndFileIfNeeded();
             hasTodoFolderAndFile = true;
         }
+    }
+
+    private static void createFolderAndFileIfNeeded() {
+        FileIO.createFolderIfAbsent(Config.FOLDER.path);
+        FileIO.createFileIfAbsent(Config.FILE.path);
     }
 
 }

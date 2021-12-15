@@ -1,7 +1,7 @@
 package components;
 
 import common.FileIO;
-import enums.*;
+
 import static common.OutToConsole.print;
 
 import java.util.List;
@@ -74,7 +74,7 @@ public class Cases {
     private static List<String> ClearFileAndReturnOldContent() {
         List<String> lines = FileIO.readAllLines(Config.FILE.path);
         FileIO.deleteFile(Config.FILE.path);
-        InitProcedure.start();
+        FileIO.createFileIfAbsent(Config.FILE.path);
         return lines;
     }
 
