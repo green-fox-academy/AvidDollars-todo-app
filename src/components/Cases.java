@@ -1,7 +1,6 @@
 package components;
 
 import common.FileIO;
-
 import static common.OutToConsole.print;
 
 import java.util.List;
@@ -38,11 +37,14 @@ public class Cases {
             return;
         }
 
+        // returns a list of todos to process
         List<String> lines = ClearFileAndReturnOldContent();
 
         for (int i = 0; i < lines.size(); i++) {
             if (i == todoToHandleIndex) {
                 String todo = lines.get(i);
+
+                // .split(regex, limit: 2) → just one split is done
                 String[] todoParts = todo.split(",", 2);
 
                 // "1," ... 1 = true (task is completed)
@@ -71,6 +73,8 @@ public class Cases {
         }
     }
 
+    // quite ineffective solution, but it works fine at a scale of simple CLI todo application
+    // deletes old file, creates new blank file and returns the content of old file
     private static List<String> ClearFileAndReturnOldContent() {
         List<String> lines = FileIO.readAllLines(Config.FILE.path);
         FileIO.deleteFile(Config.FILE.path);
