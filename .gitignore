@@ -1,0 +1,13 @@
+# IntelliJ and Java related stuff
+out/
+*.iml
+*.xml
+
+# personal 'playground' and other files
+*playground*
+*CodeWars*
+
+
+# all starting with dot except .gitignore file
+.*
+!.gitignore
