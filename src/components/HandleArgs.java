@@ -18,26 +18,27 @@ public class HandleArgs {
 
                 case "-a", "--add" -> {
                     if (args.length == 1) {
-                        print("Unable to remove: no index provided");
+                        print("Unable to add: no index provided");
                         return;
                     }
-
                     Cases.addTodo(args);
                 }
 
                 case "-r", "--remove" -> {
-                    // TODO: error handling
+                    if (args.length == 1) {
+                        print("Unable to remove: no index provided");
+                        return;
+                    }
                     Cases.removeTodo(args);
                 }
 
                 case "-c", "--check" -> {
-                    // TODO: error handling
                     Cases.checkTodo(args);
                 }
 
                 default -> {
                     // TODO: error handling
-                    print("default case invoked");
+                    print("Unsupported argument");
                 }
             }
         }
