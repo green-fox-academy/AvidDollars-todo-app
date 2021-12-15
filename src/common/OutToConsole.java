@@ -1,4 +1,4 @@
-package consoleout;
+package common;
 
 // import it with static keyword:
 // eg.: import static consoleout.OutToConsole.*;
