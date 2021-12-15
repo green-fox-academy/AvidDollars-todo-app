@@ -6,7 +6,7 @@ import static common.OutToConsole.print;
 
 public class Validators {
 
-    // returns -1 invalid input
+    // returns index of todo for further processing and -1 if input is invalid
     protected static int validateInput(String[] args) {
         long linesCount = FileIO.countLines(Config.FILE.path);
 
