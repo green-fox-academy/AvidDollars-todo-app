@@ -1,5 +1,6 @@
 package common;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.*;
 import java.util.*;
@@ -18,6 +19,28 @@ public class FileIO {
             System.out.printf("Unable to read file: %s\n", fileName);
             return new ArrayList<>();
         }
+    }
+
+    public static boolean createFileIfAbsent(String filename) {
+        try {
+            File file = new File(filename);
+            file.createNewFile();
+            return true;
+        } catch (IOException e) {
+            System.out.printf("Unable to create file: %s\n", filename);
+            return false;
+        }
+    }
+
+    public static boolean createFolderIfAbsent(String folderName) {
+        File folder = new File(folderName);
+        if (!folder.exists()) {
+            folder.mkdir();
+            return false;
+        }
+
+        // if folder exists
+        return true;
     }
 
     public static long countLines(String fileName) {
