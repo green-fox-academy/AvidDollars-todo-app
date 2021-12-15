@@ -21,6 +21,10 @@ public class FileIO {
         }
     }
 
+    public static boolean deleteFile(String filename) {
+        return new File(filename).delete();
+    }
+
     public static boolean createFileIfAbsent(String filename) {
         try {
             File file = new File(filename);
