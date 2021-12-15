@@ -1,7 +1,7 @@
 package common;
 
-// import it with static keyword:
-// eg.: import static consoleout.OutToConsole.*;
+// to be used with static import:
+// eg.: import static common.OutToConsole.*;
 
 public class OutToConsole {
     public static void print(Object obj) {

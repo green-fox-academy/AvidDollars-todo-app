@@ -1,7 +1,6 @@
 package common;
 
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 import java.nio.file.*;
 import java.util.*;
 import java.util.stream.Stream;
@@ -48,7 +47,6 @@ public class FileIO {
     }
 
     public static long countLines(String fileName) {
-
         try {
             Path filePath = Paths.get(fileName);
             Stream<String> stream = Files.lines(filePath);
