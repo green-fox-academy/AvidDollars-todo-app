@@ -89,6 +89,9 @@ public class Cases {
 
     public static void showTodos() {
         long linesCount = FileIO.countLines(Configuration.getFileForCurrentUser());
+        String userHeader = "user: " + Configuration.getActualUser();
+        String userHeaderUnderline = "=".repeat(userHeader.length());
+        print(String.format("%s\n%s", userHeader, userHeaderUnderline));
 
         if (linesCount == 0) {
             print("No todos for today! :)");
