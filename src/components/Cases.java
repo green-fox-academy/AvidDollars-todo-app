@@ -74,7 +74,7 @@ public class Cases {
     }
 
     // quite ineffective solution, but it works fine at a scale of simple CLI todo application
-    // deletes old file, creates new blank file and returns the content of old file
+    // deletes old file, creates new blank file with the name of deleted one and returns the content of old file
     private static List<String> ClearFileAndReturnOldContent() {
         List<String> lines = FileIO.readAllLines(Config.FILE.path);
         FileIO.deleteFile(Config.FILE.path);
