@@ -20,15 +20,26 @@ public class FileIO {
         }
     }
 
+    public static String readFirstLine(String fileName) {
+        try {
+            Path filePath = Paths.get(fileName);
+            return Files.lines(filePath).findFirst().get();
+
+        } catch (IOException e) {
+            System.out.printf("Unable to read file: %s\n", fileName);
+            return null;
+        }
+    }
+
     public static boolean deleteFile(String filename) {
         return new File(filename).delete();
     }
 
     public static boolean createFileIfAbsent(String filename) {
         try {
-            File file = new File(filename);
-            file.createNewFile();
+            new File(filename).createNewFile();
             return true;
+
         } catch (IOException e) {
             System.out.printf("Unable to create file: %s\n", filename);
             return false;
