@@ -20,6 +20,11 @@ public class FileIO {
         }
     }
 
+    public static boolean fileExists(String fileName) {
+        Path filePath = Paths.get(fileName);
+        return Files.exists(filePath);
+    }
+
     public static String readFirstLine(String fileName) {
         try {
             Path filePath = Paths.get(fileName);
