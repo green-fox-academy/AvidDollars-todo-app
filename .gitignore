@@ -11,6 +11,3 @@ out/
 # all starting with dot except .gitignore file
 .*
 !.gitignore
-
-# folder with TODO tasks
-todo-files/
