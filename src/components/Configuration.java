@@ -13,7 +13,7 @@ public class Configuration {
         FileIO.writeToFile(userName, ACTUAL_USER_FILE);
     }
 
-    private static String getActualUser() {
+    public static String getActualUser() {
         return FileIO.readFirstLine(ACTUAL_USER_FILE);
     }
 
