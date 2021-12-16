@@ -10,6 +10,10 @@ public class App {
     // add case for removing all checked tasks
     // todo (bash alias) -r x → "unable to..." prints twice
 
+    // TODO:
+    // ISSUE:
+    // todo -u new-user ... works fine
+    // todo -l ... shows content for default user
     public static void main(String[] args) {
         createFileAndFolderIfNeeded();
 
