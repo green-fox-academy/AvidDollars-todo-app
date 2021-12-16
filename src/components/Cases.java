@@ -26,8 +26,17 @@ public class Cases {
 
         }
 
-        return FileIO.appendToFile(toAdd, Config.FILE.path);
+        return FileIO.appendToFile(toAdd, Config.getFile());
     };
+
+    // TODO: comment to be removed
+    // ISSUE:
+    // works fine... Config.getFile() returns right String after Config.setUser(...)
+    public static void switchUser(String[] args) {
+        String userName = args[1];
+        Config.setUser(userName);
+        FileIO.createFileIfAbsent(Config.getFile());
+    }
 
     public static void checkTodo(String[] args) {
         int todoToHandleIndex = Validators.validateInput(args);
@@ -52,7 +61,7 @@ public class Cases {
                 lines.set(i, checkedTodo);
             }
 
-            FileIO.appendToFile(lines.get(i), Config.FILE.path);
+            FileIO.appendToFile(lines.get(i), Config.getFile());
         }
     }
 
@@ -68,7 +77,7 @@ public class Cases {
 
         for (int i = 0; i < lines.size(); i++) {
             if (i != todoToHandleIndex) {
-                FileIO.appendToFile(lines.get(i), Config.FILE.path);
+                FileIO.appendToFile(lines.get(i), Config.getFile());
             }
         }
     }
@@ -76,21 +85,24 @@ public class Cases {
     // quite ineffective solution, but it works fine at a scale of simple CLI todo application
     // deletes old file, creates new blank file and returns the content of old file
     private static List<String> ClearFileAndReturnOldContent() {
-        List<String> lines = FileIO.readAllLines(Config.FILE.path);
-        FileIO.deleteFile(Config.FILE.path);
-        FileIO.createFileIfAbsent(Config.FILE.path);
+        List<String> lines = FileIO.readAllLines(Config.getFile());
+        FileIO.deleteFile(Config.getFile());
+        FileIO.createFileIfAbsent(Config.getFile());
         return lines;
     }
 
+    // TODO: comment to be removed
+    // ISSUE:
+    // Config.getFile() always returns file for original user
     public static void showTodos() {
-        long linesCount = FileIO.countLines(Config.FILE.path);
+        long linesCount = FileIO.countLines(Config.getFile());
 
         if (linesCount == 0) {
             print("No todos for today! :)");
             return;
         }
 
-        List<String> tasks = FileIO.readAllLines(Config.FILE.path);
+        List<String> tasks = FileIO.readAllLines(Config.getFile());
 
         int index = 1;
 
