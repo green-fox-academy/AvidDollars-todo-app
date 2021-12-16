@@ -1,14 +1,22 @@
 package components;
 
-// contains names for files and folders for the app
-public enum Config {
-    FOLDER("src/todo-files"),
-    FILE("src/todo-files/todo-tasks");
+public class Config {
+    private static String FOLDER = "src/todo-files";
+    private static String FILE = "src/todo-files/default";
 
-    public final String path;
-
-    private Config(String path) {
-        this.path = path;
+    private static String setFullFilePath(String folder, String user) {
+        return String.format("%s/%s", folder, user);
     }
 
+    public static void setUser(String name) {
+        Config.FILE = setFullFilePath(FOLDER, name);
+    }
+
+    public static String getFolder() {
+        return Config.FOLDER;
+    }
+
+    public static String getFile() {
+        return Config.FILE;
+    }
 }
