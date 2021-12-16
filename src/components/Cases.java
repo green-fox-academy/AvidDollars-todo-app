@@ -2,6 +2,7 @@ package components;
 
 import common.FileIO;
 import static common.OutToConsole.print;
+import static common.OutToConsole.printf;
 
 import java.util.List;
 
@@ -91,7 +92,7 @@ public class Cases {
         long linesCount = FileIO.countLines(Configuration.getFileForCurrentUser());
         String userHeader = "user: " + Configuration.getActualUser();
         String userHeaderUnderline = "=".repeat(userHeader.length());
-        print(String.format("%s\n%s", userHeader, userHeaderUnderline));
+        printf("%s\n%s", userHeader, userHeaderUnderline);
 
         if (linesCount == 0) {
             print("No todos for today! :)");
@@ -112,6 +113,6 @@ public class Cases {
         // limit: 2 → just one split will be done
         String[] strParts = task.split(",", 2);
         String ifDone = (strParts[0].equals("1")) ? "[x]" : "[ ]";
-        print(String.format("%d - %s %s", index, ifDone, strParts[1]));
+        printf("%d - %s %s", index, ifDone, strParts[1]);
     }
 }

@@ -5,6 +5,8 @@ import java.nio.file.*;
 import java.util.*;
 import java.util.stream.Stream;
 
+import static common.OutToConsole.printf;
+
 //options for encoding
 //import static java.nio.charset.StandardCharsets.*;
 
@@ -15,7 +17,7 @@ public class FileIO {
             return Files.readAllLines(filePath);
 
         } catch (IOException e) {
-            System.out.printf("Unable to read file: %s\n", fileName);
+            printf("Unable to read file: %s\n", fileName);
             return new ArrayList<>();
         }
     }
@@ -31,7 +33,7 @@ public class FileIO {
             return Files.lines(filePath).findFirst().get();
 
         } catch (IOException e) {
-            System.out.printf("Unable to read file: %s\n", fileName);
+            printf("Unable to read file: %s\n", fileName);
             return null;
         }
     }
@@ -46,7 +48,7 @@ public class FileIO {
             return true;
 
         } catch (IOException e) {
-            System.out.printf("Unable to create file: %s\n", filename);
+            printf("Unable to create file: %s\n", filename);
             return false;
         }
     }
@@ -72,7 +74,7 @@ public class FileIO {
             return res;
 
         } catch (IOException e) {
-            System.out.printf("Unable to read file: %s\n", fileName);
+            printf("Unable to read file: %s\n", fileName);
             return 0;
         }
     }
@@ -103,7 +105,7 @@ public class FileIO {
             return true;
 
         } catch (IOException e) {
-            System.err.printf("Unable to write file: %s\n", fileName);
+            printf("Unable to write file: %s\n", fileName);
             return false;
         }
     }
