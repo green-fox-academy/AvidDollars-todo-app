@@ -5,6 +5,11 @@ import components.Config;
 public class App {
     private static boolean hasTodoFolderAndFile = false;
 
+    // TODO:
+    // add case for list only unchecked todos (+update CLI options)
+    // add case for removing all checked tasks
+    // todo (bash alias) -r x → "unable to..." prints twice
+
     public static void main(String[] args) {
         createFileAndFolderIfNeeded();
 
@@ -28,8 +33,8 @@ public class App {
     }
 
     private static void createFolderAndFileIfNeeded() {
-        FileIO.createFolderIfAbsent(Config.FOLDER.path);
-        FileIO.createFileIfAbsent(Config.FILE.path);
+        FileIO.createFolderIfAbsent(Config.getFolder());
+        FileIO.createFileIfAbsent(Config.getFile());
     }
 
 }
