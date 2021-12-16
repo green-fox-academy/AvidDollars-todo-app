@@ -1,6 +1,6 @@
 import common.FileIO;
 import components.*;
-import components.Config;
+import components.Configuration;
 
 public class App {
     private static boolean hasTodoFolderAndFile = false;
@@ -15,7 +15,7 @@ public class App {
 
         // end of dummy data
 
-        Args.handle(args);
+        ArgumentHandler.handle(args);
 
     }
 
@@ -28,8 +28,8 @@ public class App {
     }
 
     private static void createFolderAndFileIfNeeded() {
-        FileIO.createFolderIfAbsent(Config.FOLDER.path);
-        FileIO.createFileIfAbsent(Config.FILE.path);
+        FileIO.createFolderIfAbsent(Configuration.FOLDER.path);
+        FileIO.createFileIfAbsent(Configuration.FILE.path);
     }
 
 }

@@ -4,7 +4,7 @@ import java.util.Map;
 
 import static common.OutToConsole.print;
 
-public class Args {
+public class ArgumentHandler {
     public static void handle(String[] args) {
         if (args.length == 0) {
             printUsage();

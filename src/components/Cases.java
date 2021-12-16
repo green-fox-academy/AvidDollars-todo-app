@@ -26,7 +26,7 @@ public class Cases {
 
         }
 
-        return FileIO.appendToFile(toAdd, Config.FILE.path);
+        return FileIO.appendToFile(toAdd, Configuration.FILE.path);
     };
 
     public static void checkTodo(String[] args) {
@@ -52,7 +52,7 @@ public class Cases {
                 lines.set(i, checkedTodo);
             }
 
-            FileIO.appendToFile(lines.get(i), Config.FILE.path);
+            FileIO.appendToFile(lines.get(i), Configuration.FILE.path);
         }
     }
 
@@ -68,7 +68,7 @@ public class Cases {
 
         for (int i = 0; i < lines.size(); i++) {
             if (i != todoToHandleIndex) {
-                FileIO.appendToFile(lines.get(i), Config.FILE.path);
+                FileIO.appendToFile(lines.get(i), Configuration.FILE.path);
             }
         }
     }
@@ -76,21 +76,21 @@ public class Cases {
     // quite ineffective solution, but it works fine at a scale of simple CLI todo application
     // deletes old file, creates new blank file with the name of deleted one and returns the content of old file
     private static List<String> ClearFileAndReturnOldContent() {
-        List<String> lines = FileIO.readAllLines(Config.FILE.path);
-        FileIO.deleteFile(Config.FILE.path);
-        FileIO.createFileIfAbsent(Config.FILE.path);
+        List<String> lines = FileIO.readAllLines(Configuration.FILE.path);
+        FileIO.deleteFile(Configuration.FILE.path);
+        FileIO.createFileIfAbsent(Configuration.FILE.path);
         return lines;
     }
 
     public static void showTodos() {
-        long linesCount = FileIO.countLines(Config.FILE.path);
+        long linesCount = FileIO.countLines(Configuration.FILE.path);
 
         if (linesCount == 0) {
             print("No todos for today! :)");
             return;
         }
 
-        List<String> tasks = FileIO.readAllLines(Config.FILE.path);
+        List<String> tasks = FileIO.readAllLines(Configuration.FILE.path);
 
         int index = 1;
 

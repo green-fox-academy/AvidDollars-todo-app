@@ -8,7 +8,7 @@ public class Validators {
 
     // returns index of todo for further processing and -1 if input is invalid
     protected static int validateInput(String[] args) {
-        long linesCount = FileIO.countLines(Config.FILE.path);
+        long linesCount = FileIO.countLines(Configuration.FILE.path);
 
         if (linesCount == 0) {
             print("file is empty");
