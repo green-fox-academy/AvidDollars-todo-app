@@ -37,7 +37,6 @@ public class Args {
                 }
 
                 default -> {
-                    // TODO: error handling
                     print("Unsupported argument");
                 }
             }
