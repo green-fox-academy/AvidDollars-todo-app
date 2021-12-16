@@ -36,6 +36,14 @@ public class ArgumentHandler {
                     Cases.checkTodo(args);
                 }
 
+                case "-u", "--user" -> {
+                    if (args.length == 1) {
+                        print("Unable to switch user: no name provided");
+                        return;
+                    }
+                    Cases.switchUser(args);
+                }
+
                 default -> {
                     print("Unsupported argument");
                 }
@@ -52,7 +60,8 @@ public class ArgumentHandler {
                 "-l", "Lists all the tasks",
                 "-a", "Adds a new task",
                 "-r", "Removes an task",
-                "-c", "Completes an task"
+                "-c", "Completes an task",
+                "-u", "Changes user"
         );
 
         print(String.join("\n", header, underline, "", optionsHeader));
