@@ -3,6 +3,14 @@ import components.*;
 import components.Configuration;
 
 public class App {
+    // TODO:
+    // switch cases to add:
+    // - show all users
+    // - list all unchecked tasks
+    // - remove all checked tasks
+    // - check all todos
+    // unit testing
+
     public static void main(String[] args) {
         createFolderAndFileIfNeeded();
         ArgumentHandler.handle(args);
